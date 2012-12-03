@@ -1,0 +1,7 @@
+{
+	"pidFile": "/tmp/lexecd.pid",
+	"user": "ceptem",
+	"group": "ceptem",
+	"users": "users.json",
+	"methods": "methods.json"
+}

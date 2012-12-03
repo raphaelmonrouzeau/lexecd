@@ -1,0 +1,6 @@
+[submodule "submodules/ultrajson"]
+	path = submodules/ultrajson
+	url = https://github.com/esnme/ultrajson.git
+[submodule "submodules/libuv"]
+	path = submodules/libuv
+	url = https://github.com/joyent/libuv.git
