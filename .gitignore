@@ -1,0 +1,4 @@
+autoscan.log
+.*.swp
+.*.swo
+autom4te.cache/
