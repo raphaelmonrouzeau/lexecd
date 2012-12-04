@@ -8,10 +8,14 @@ autom4te.cache/
 configure
 # Aclocal
 aclocal.m4
+# Autoheader
+config.h.in
 # Automake
 depcomp
 install-sh
 missing
+
+Makefile.in
 
 # Editors
 # -------

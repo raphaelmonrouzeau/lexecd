@@ -9,4 +9,4 @@ LDFLAGS =
 # the previous manual Makefile
 bin_PROGRAMS = lxd_check
 lxd_check_SOURCES = lxd_check/main.c
-#sbin_PROGRAMS = lexecd
+sbin_PROGRAMS = lexecd

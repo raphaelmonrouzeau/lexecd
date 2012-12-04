@@ -8,7 +8,7 @@ AM_INIT_AUTOMAKE(lexec, 0.0.1)
 AC_OUTPUT(Makefile src/Makefile doc/Makefile examples/Makefile man/Makefile scripts/Makefile)
 
 AC_CONFIG_SRCDIR([src/lexecd/main.c])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADERS([src/config.h])
 
 # Checks for programs.
 AC_PROG_CC
