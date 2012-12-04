@@ -1,4 +1,29 @@
+# Autotools
+# ---------
+
+# Autoscan
 autoscan.log
+# Autoconf
+autom4te.cache/
+configure
+# Aclocal
+aclocal.m4
+# Automake
+depcomp
+install-sh
+missing
+
+# Editors
+# -------
+
+# Vim
 .*.swp
 .*.swo
-autom4te.cache/
+# Emacs
+*~
+
+# C/C++/...
+# -
+
+*.i
+*.o
