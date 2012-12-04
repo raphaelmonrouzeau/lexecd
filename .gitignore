@@ -14,8 +14,14 @@ config.h.in
 depcomp
 install-sh
 missing
-
 Makefile.in
+# Configure
+.deps/
+Makefile
+config.log
+config.status
+config.h
+stamp-h1
 
 # Editors
 # -------
