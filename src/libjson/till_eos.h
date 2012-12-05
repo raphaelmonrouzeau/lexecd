@@ -8,7 +8,7 @@
  * End of string may be end of buffer or unquoted '"'.
  */
 static inline unsigned int
-till_eos(char*restrict s, unsigned int i, const unsigned int m, char*restrict dst, unsigned int*restrict pj, unsigned int n)
+till_eos(char const*const s, unsigned int i, const unsigned int m, char*restrict dst, unsigned int*restrict pj, unsigned int n)
 {
 	bool quoted = false;
 
@@ -22,7 +22,7 @@ till_eos(char*restrict s, unsigned int i, const unsigned int m, char*restrict ds
 		} else if (s[i] == '"') {
 			if (!quoted)
 				return i;
-			dst[*(pj++)] = s[i];
+			dst[(*pj)++] = s[i];
 			quoted = false;
 		} else if (quoted) {
 			static const char symbols[6] = "\\bfnrt";
@@ -31,7 +31,7 @@ till_eos(char*restrict s, unsigned int i, const unsigned int m, char*restrict ds
 			const int         o = (int)(sizeof symbols/sizeof *symbols);
 			for (k=0; k<o; k++) {
 				if (s[i] == symbols[k]) {
-					dst[*(pj++)] = chars[k];
+					dst[(*pj)++] = chars[k];
 					break;
 				}
 			}
@@ -39,12 +39,12 @@ till_eos(char*restrict s, unsigned int i, const unsigned int m, char*restrict ds
 				if (s[i] == 'u') {
 					// Unicode
 				} else {
-					dst[*(pj++)] = s[i];
+					dst[(*pj)++] = s[i];
 				}
 			}
 			quoted = false;
 		} else {
-			dst[*(pj++)] = s[i];
+			dst[(*pj)++] = s[i];
 		}
 		i++;
 	} while (true);
