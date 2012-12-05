@@ -1,1 +1,1 @@
-man_MANS = lexecd.8 lxd-check.1
+man_MANS = lexecd.8 lxd_check.1

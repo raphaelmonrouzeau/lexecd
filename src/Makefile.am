@@ -1,10 +1,3 @@
-# what flags you want to pass to the C compiler & linker
-AM_CFLAGS = -Wall -W -std=c99 -O2
-AM_LDFLAGS =
+AUTOMAKE_OPTIONS = foreign
+SUBDIRS = lxd_check lexecd
 
-# this lists the binaries to produce, the (non-PHONY, binary) targets in
-# the previous manual Makefile
-bin_PROGRAMS = lxd_check
-sbin_PROGRAMS = lexecd
-lexecd_SOURCES = lexecd/lexecd.c lexecd/lexecd.h
-lxd_check_SOURCES = lxd_check/lxd_check.c

@@ -1,6 +1,6 @@
 #!/bin/sh
-# could be replaced with autoreconf
-aclocal
+autoreconf --install
+#aclocal
 #autoheader
-automake --add-missing
-autoconf
+#automake --add-missing
+#autoconf
