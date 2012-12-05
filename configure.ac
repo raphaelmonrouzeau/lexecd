@@ -6,7 +6,9 @@ AC_INIT([lexec], [0.0.1], [raphael.monrouzeau@gmail.com])
 AM_INIT_AUTOMAKE(lexec, 0.0.1)
 # Store auxiliary scripts in
 #AC_CONFIG_AUX_DIR([build-aux])
-AC_OUTPUT(Makefile src/Makefile src/lexecd/Makefile src/lxd_check/Makefile doc/Makefile examples/Makefile man/Makefile scripts/Makefile)
+AC_OUTPUT(Makefile src/Makefile src/lexecd/Makefile src/lxd_check/Makefile
+          src/libjson/Makefile tests/Makefile doc/Makefile examples/Makefile
+          man/Makefile scripts/Makefile)
 
 AC_CONFIG_SRCDIR([src/lexecd/lexecd.c])
 
@@ -19,6 +21,7 @@ AC_CONFIG_HEADERS([src/config.h])
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_RANLIB
 #AC_PROG_CXX
 #AC_PROG_F77
 #AC_PROG_SED
@@ -33,6 +36,7 @@ AC_PROG_CC
 # Checks for libraries.
 #AC_CHECK_LIB([efence], [malloc], [EFENCELIB=-lefence])
 #AC_SUBST([EFENCELIB])
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4])
 
 # Checks for header files.
 AC_CHECK_HEADERS([stdlib.h unistd.h])
@@ -43,5 +47,6 @@ AC_C_INLINE
 AC_C_RESTRICT
 
 # Checks for library functions.
+AC_FUNC_MALLOC
 
 AC_OUTPUT

@@ -1,3 +1,3 @@
 AUTOMAKE_OPTIONS = foreign
-SUBDIRS = lxd_check lexecd
+SUBDIRS = libjson lxd_check lexecd
 
