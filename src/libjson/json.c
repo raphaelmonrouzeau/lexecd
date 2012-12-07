@@ -33,8 +33,19 @@ json_quick_print(unsigned int type, union json_value value)
     printf("%s\n", buff);
 }
 
+
+
+
+void
+json_build(unsigned int type, union json_value value, void*restrict context)
+{
+    struct json_items**restrict pitems = (struct json_items**)context;
+
+    json_items_add_item(pitems, type, value);
+}
+
 unsigned int
-json_decode_value(char* s, unsigned int sz, void (*cb)(unsigned int,union json_value))
+json_decode_iter(char* s, unsigned int sz, void (*cb)(unsigned int, union json_value, void*restrict), void*const context)
 {
 	unsigned int i = 0;
 
@@ -46,29 +57,29 @@ json_decode_value(char* s, unsigned int sz, void (*cb)(unsigned int,union json_v
 
 	i = eat_spaces(s, i, sz);
 	if (i == sz) {
-		cb(JSON_END_IN_SPACE, value);
+		cb(JSON_END_IN_SPACE, value, context);
         return i;
     }
 
 	if (s[i] == '[') {
 		i = eat_spaces(s, i+1, sz);
 		if (i == sz) {
-			cb(JSON_END_ON_NEW_ARRAY, value);
+			cb(JSON_END_ON_NEW_ARRAY, value, context);
             return i;
         }
 	}
 
 	if (s[i] == '{') {
-        cb(JSON_OPEN_OBJECT, value);
+        cb(JSON_OPEN_OBJECT, value, context);
 		i = eat_spaces(s, i+1, sz);
 		if (i == sz) {
-			cb(JSON_END_ON_NEW_OBJECT, value);
+			cb(JSON_END_ON_NEW_OBJECT, value, context);
             return i;
         }
         if (s[i] == '}') {
-            cb(JSON_CLOSE_OBJECT, value);
+            cb(JSON_CLOSE_OBJECT, value, context);
         } else if (s[i] != '"') {
-			cb(JSON_OBJECT_KEY_NOT_A_STRING, value);
+			cb(JSON_OBJECT_KEY_NOT_A_STRING, value, context);
             return i;
         }
 		i = till_eos(s, i+1, sz, sts, &sti, stsz);
@@ -80,15 +91,15 @@ json_decode_value(char* s, unsigned int sz, void (*cb)(unsigned int,union json_v
         i = till_eos(s, i+1, sz, sts, &sti, stsz);
         printf("eos: i=%u sz=%u\n",i,sz);
         if (i == sz) {
-            cb(JSON_END_ON_STRING, value);
+            cb(JSON_END_ON_STRING, value, context);
             return i;
         } else if (sti == stsz) {
-            cb(JSON_END_IN_STRING_TABLE, value);
+            cb(JSON_END_IN_STRING_TABLE, value, context);
             return i;
         }
         sts[sti++] = '\0';
         value.string = string;
-        cb(JSON_STRING, value);
+        cb(JSON_STRING, value, context);
     }
 
     return i;

@@ -22,8 +22,24 @@
 
 union json_value
 {
-    double number;
-    char*  string;
+    double       number;
+    char*        string;
+    unsigned int next;
+};
+
+struct json_item
+{
+    unsigned int type;
+    union json_value value;
+};
+
+struct json_items
+{
+    unsigned int length;
+    unsigned int level;  // of cursor
+    unsigned int parent; // of cursor
+    unsigned int pad3;
+    struct json_item items[];
 };
 
 #  if defined(__cplusplus)
@@ -41,6 +57,15 @@ json_type_name(unsigned int type);
 
 unsigned int
 json_encode_value(unsigned int type, union json_value value, char dst[], size_t max);
+
+void
+json_items_init(struct json_items* json_items, unsigned int length);
+
+struct json_items*
+json_items_create(unsigned int n);
+
+void
+json_items_add_item(struct json_items**restrict pitems, unsigned int type, union json_value value);
 
 JSON_END_DECLS
 

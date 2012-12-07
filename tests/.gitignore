@@ -1,1 +1,3 @@
 check_libjson_till_eos
+check_libjson_json_items_create
+check_libjson
